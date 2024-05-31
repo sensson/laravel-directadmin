@@ -8,7 +8,8 @@ use Sensson\DirectAdmin\DirectAdmin as BaseDirectAdmin;
 /**
  * @see BaseDirectAdmin
  *
- * @method static call(string $string)
+ * @method static call(string $string, array $params = [])
+ * @method static debug()
  */
 class DirectAdmin extends Facade
 {
