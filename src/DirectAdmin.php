@@ -8,8 +8,8 @@ use Sensson\DirectAdmin\Exceptions\ConnectionFailed;
 
 class DirectAdmin
 {
-    use Tappable;
     use ForwardsCalls;
+    use Tappable;
 
     public function __construct(public Api $api)
     {
