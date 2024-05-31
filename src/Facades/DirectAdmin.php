@@ -2,8 +2,8 @@
 
 namespace Sensson\DirectAdmin\Facades;
 
-use Sensson\DirectAdmin\DirectAdmin as BaseDirectAdmin;
 use Illuminate\Support\Facades\Facade;
+use Sensson\DirectAdmin\DirectAdmin as BaseDirectAdmin;
 
 /**
  * @see BaseDirectAdmin

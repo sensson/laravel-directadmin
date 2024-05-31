@@ -5,7 +5,6 @@ namespace Sensson\DirectAdmin;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Traits\Macroable;
 use JsonException;
 use Sensson\DirectAdmin\Exceptions\ConnectionFailed;
 
@@ -63,6 +62,7 @@ class Api
             $content = collect(explode('&', urldecode($response->body())))
                 ->map(function ($item) {
                     [$domain, $user] = explode('=', $item);
+
                     return [$user => $domain];
                 })
                 ->toArray();

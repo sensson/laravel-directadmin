@@ -4,7 +4,6 @@ namespace Sensson\DirectAdmin;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Sensson\DirectAdmin\Commands\DirectAdminCommand;
 
 class DirectAdminServiceProvider extends PackageServiceProvider
 {
