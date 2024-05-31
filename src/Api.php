@@ -61,9 +61,9 @@ class Api
         } catch (JsonException) {
             $content = collect(explode('&', urldecode($response->body())))
                 ->map(function ($item) {
-                    [$domain, $user] = explode('=', $item);
+                    [$value, $key] = explode('=', $item);
 
-                    return [$user => $domain];
+                    return [$key => $value];
                 })
                 ->toArray();
         }
