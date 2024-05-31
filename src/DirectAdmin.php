@@ -3,10 +3,12 @@
 namespace Sensson\DirectAdmin;
 
 use Illuminate\Support\Traits\ForwardsCalls;
+use Illuminate\Support\Traits\Tappable;
 use Sensson\DirectAdmin\Exceptions\ConnectionFailed;
 
 class DirectAdmin
 {
+    use Tappable;
     use ForwardsCalls;
 
     public function __construct(public Api $api)
