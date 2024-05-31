@@ -27,14 +27,14 @@ This is the contents of the published config file:
 return [
     'username' => env('DIRECTADMIN_USERNAME', 'admin'),
     'password' => env('DIRECTADMIN_PASSWORD', 'password'),
-    'baseUrl' => env('DIRECTADMIN_BASE_URL'),
+    'baseUrl' => env('DIRECTADMIN_BASE_URL', 'https://server:2222'),
 ];
 ```
 
 ## Usage
 
 ```php
-$result = Sensson\DirectAdmin\Facades\DirectAdmin::call('API_');
+$result = Sensson\DirectAdmin\Facades\DirectAdmin::call('{DIRECTADMIN_API_CALL}');
 ```
 
 ## Testing
