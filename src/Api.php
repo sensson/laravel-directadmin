@@ -24,8 +24,8 @@ class Api
             : [];
 
         try {
-            $response = Http::withBasicAuth(config('directadmin.username'), config('directadmin.password'))
-                ->acceptJson()
+            $response = Http::acceptJson()
+                ->withBasicAuth(config('directadmin.username'), config('directadmin.password'))
                 ->withQueryParameters($queryParams)
                 ->post(config('directadmin.baseUrl').'/'.strtoupper($command), $params);
         } catch (ConnectionException $e) {
