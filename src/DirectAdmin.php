@@ -113,10 +113,6 @@ class DirectAdmin
         ];
     }
 
-    /**
-     * @throws ConnectionFailed
-     * @throws InvalidResponse
-     */
     public function __call(string $name, array $arguments)
     {
         if (method_exists($this, $name)) {
