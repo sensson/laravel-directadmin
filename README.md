@@ -54,7 +54,7 @@ DirectAdmin API command by passing it as method to the `DirectAdmin` facade:
 $result = DirectAdmin::CMD_API_DOMAIN_OWNERS();
 ```
 For more information on the available commands, please refer to the 
-[DirectAdmin API documentation](https://docs.directadmin.com/api/index.html).
+[DirectAdmin API documentation](https://docs.directadmin.com/directadmin/customizing-workflow/api-all-about.html).
 
 ## Testing
 
