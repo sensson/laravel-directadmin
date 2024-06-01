@@ -21,7 +21,8 @@ You can publish the config file with:
 php artisan vendor:publish --tag="laravel-directadmin-config"
 ```
 
-This is the contents of the published config file:
+The configuration file that will be published to your application's config 
+directory is as follows:
 
 ```php
 return [
@@ -33,9 +34,27 @@ return [
 
 ## Usage
 
+Configure the DirectAdmin service by specifying the following environment 
+variables:
+
+- `DIRECTADMIN_USERNAME`
+- `DIRECTADMIN_PASSWORD`
+- `DIRECTADMIN_BASE_URL`
+
+Then you can call any DirectAdmin API command by using the `DirectAdmin` facade:
+
 ```php
-$result = Sensson\DirectAdmin\Facades\DirectAdmin::call('{DIRECTADMIN_API_CALL}');
+$result = DirectAdmin::call('{DIRECTADMIN_API_CALL}');
 ```
+
+This will return a `Collection` of the response data. You can also call any
+DirectAdmin API command by passing it as method to the `DirectAdmin` facade:
+
+```php
+$result = DirectAdmin::CMD_API_DOMAIN_OWNERS();
+```
+For more information on the available commands, please refer to the 
+[DirectAdmin API documentation](https://docs.directadmin.com/api/index.html).
 
 ## Testing
 
