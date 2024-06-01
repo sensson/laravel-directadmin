@@ -56,7 +56,6 @@ class DirectAdmin
     /**
      * Process the response that's returned by the DirectAdmin API
      * and prepare it for further processing by third party code.
-     *
      */
     protected function processResponse(Response $response, string $command = ''): Collection
     {

@@ -66,5 +66,3 @@ it('fails if server returns invalid JSON', function () {
 
     app(DirectAdmin::class)->call('INVALID_JSON');
 })->throws(InvalidResponse::class);
-
-
