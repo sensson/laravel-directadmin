@@ -8,7 +8,7 @@ enum Method: string
     case POST = 'POST';
     case PUT = 'PUT';
     case DELETE = 'DELETE';
-    
+
     public function verb(): string
     {
         return strtolower($this->value);

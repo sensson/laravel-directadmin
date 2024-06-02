@@ -27,7 +27,8 @@ class DirectAdmin
 
     private string $password;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->server = config('directadmin.server');
         $this->username = config('directadmin.username');
         $this->password = config('directadmin.password');
