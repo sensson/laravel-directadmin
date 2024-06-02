@@ -2,7 +2,6 @@
 
 namespace Sensson\DirectAdmin;
 
-use Carbon\Traits\Macro;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
