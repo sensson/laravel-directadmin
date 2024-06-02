@@ -2,10 +2,12 @@
 
 namespace Sensson\DirectAdmin;
 
+use Carbon\Traits\Macro;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Traits\Tappable;
 use JsonException;
 use Sensson\DirectAdmin\Enums\Method;
@@ -17,6 +19,7 @@ use Sensson\DirectAdmin\Exceptions\Unauthorized;
 
 class DirectAdmin
 {
+    use Macroable;
     use Tappable;
 
     public bool $debug = false;
@@ -142,14 +145,5 @@ class DirectAdmin
         return [
             'json' => 'yes',
         ];
-    }
-
-    public function __call(string $name, array $arguments)
-    {
-        if (method_exists($this, $name)) {
-            return $this->{$name}(...$arguments);
-        }
-
-        return $this->call($name, $arguments);
     }
 }

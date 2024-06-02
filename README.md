@@ -68,17 +68,6 @@ user, you can use the `become` method:
 $result = DirectAdmin::become('user')->post('{DIRECTADMIN_API_CALL}');
 ```
 
-### Passing the DirectAdmin API call as a method
-
-You can also call any DirectAdmin API command by passing it as method to 
-the `DirectAdmin` facade like so:
-
-```php
-$result = DirectAdmin::CMD_API_DOMAIN_OWNERS();
-```
-
-This will be a POST request by default.
-
 For more information on the available commands, please refer to the 
 [DirectAdmin API documentation](https://docs.directadmin.com/directadmin/customizing-workflow/api-all-about.html).
 

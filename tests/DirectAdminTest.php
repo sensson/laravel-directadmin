@@ -24,39 +24,12 @@ it('works', function () {
         ]);
 });
 
-it('processes api call directly', function () {
-    Http::fake(function () {
-        return Http::response([
-            'domain.com' => 'username',
-        ]);
-    });
-
-    $response = app(DirectAdmin::class)->CMD_API_DOMAIN_OWNERS();
-
-    expect($response->toArray())
-        ->toMatchArray([
-            'domain.com' => 'username',
-        ]);
-});
-
 it('becomes a user', function () {
     config()->set('directadmin.username', 'admin');
     $directadmin = app(DirectAdmin::class)->become('user');
 
     expect($directadmin->username)->toBe('admin|user');
 });
-
-it('becomes a user even when passing the command as a method', function () {
-    Http::fake(function () {
-        return Http::response([
-            'domain.com' => 'username',
-        ]);
-    });
-
-    config()->set('directadmin.username', 'admin');
-    /** @noinspection PhpUndefinedMethodInspection */
-    app(DirectAdmin::class)->become('user')->CMD_API_DOMAIN_OWNERS();
-})->throwsNoExceptions();
 
 it('fails when incorrect credentials are used', function () {
     Http::fake(fn () => Http::response([], 401));
