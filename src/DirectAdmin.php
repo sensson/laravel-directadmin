@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Traits\Tappable;
 use JsonException;
+use Sensson\DirectAdmin\Enums\Method;
 use Sensson\DirectAdmin\Exceptions\AuthenticationFailed;
 use Sensson\DirectAdmin\Exceptions\CommandNotFound;
 use Sensson\DirectAdmin\Exceptions\ConnectionFailed;
@@ -32,18 +33,28 @@ class DirectAdmin
         $this->password = config('directadmin.password');
     }
 
+    public function post(string $command, array $params = []): Collection
+    {
+        return $this->call($command, $params);
+    }
+
+    public function get(string $command, array $params = []): Collection
+    {
+        return $this->call($command, $params, Method::GET);
+    }
+
     /**
      * Call the DirectAdmin API by giving it an API command and some
      * parameters. This will return an array with processed data.
      */
-    public function call(string $command, array $params = []): Collection
+    public function call(string $command, array $params = [], Method $method = Method::POST): Collection
     {
         try {
             $response = Http::acceptJson()
                 ->withBasicAuth($this->username, $this->password)
                 ->withOptions($this->getHttpOptions())
                 ->withQueryParameters($this->getQueryParams())
-                ->post($this->server.'/'.strtoupper($command), $params);
+                ->{$method->verb()}($this->server.'/'.strtoupper($command), $params);
         } catch (ConnectionException $e) {
             throw ConnectionFailed::create($e->getMessage());
         }

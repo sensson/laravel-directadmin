@@ -43,20 +43,32 @@ variables. These variables are used to authenticate with DirectAdmin
 
 The username can be either an admin, reseller or user.
 
+### Calling the API
+
 You can call any DirectAdmin API by using the `DirectAdmin` facade:
 
 ```php
-$result = DirectAdmin::call('{DIRECTADMIN_API_CALL}');
+$result = DirectAdmin::post('{DIRECTADMIN_API_CALL}');
 ```
 
-This will return a `Collection` of the response data. 
+Alternatively you can use the `get` method to call the API. It depends on
+the API call whether you should use `post` or `get`. Please refer to the 
+[DirectAdmin API documentation](https://docs.directadmin.com/directadmin/customizing-workflow/api-all-about.html) for more information.
+
+```php
+$result = DirectAdmin::get('{DIRECTADMIN_API_CALL}');
+```
+
+### Impersonating a user
 
 If you want to become a different user, and you are authenticated as an admin
 user, you can use the `become` method:
 
 ```php
-$result = DirectAdmin::become('user')->call('{DIRECTADMIN_API_CALL}');
+$result = DirectAdmin::become('user')->post('{DIRECTADMIN_API_CALL}');
 ```
+
+### Passing the DirectAdmin API call as a method
 
 You can also call any DirectAdmin API command by passing it as method to 
 the `DirectAdmin` facade like so:
@@ -64,6 +76,9 @@ the `DirectAdmin` facade like so:
 ```php
 $result = DirectAdmin::CMD_API_DOMAIN_OWNERS();
 ```
+
+This will be a POST request by default.
+
 For more information on the available commands, please refer to the 
 [DirectAdmin API documentation](https://docs.directadmin.com/directadmin/customizing-workflow/api-all-about.html).
 
