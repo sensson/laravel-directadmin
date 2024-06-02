@@ -20,6 +20,18 @@ class DirectAdmin
 
     public bool $debug = false;
 
+    public string $server;
+
+    public string $username;
+
+    private string $password;
+
+    public function __construct() {
+        $this->server = config('directadmin.server');
+        $this->username = config('directadmin.username');
+        $this->password = config('directadmin.password');
+    }
+
     /**
      * Call the DirectAdmin API by giving it an API command and some
      * parameters. This will return an array with processed data.
@@ -28,10 +40,10 @@ class DirectAdmin
     {
         try {
             $response = Http::acceptJson()
-                ->withBasicAuth(config('directadmin.username'), config('directadmin.password'))
+                ->withBasicAuth($this->username, $this->password)
                 ->withOptions($this->getHttpOptions())
                 ->withQueryParameters($this->getQueryParams())
-                ->post(config('directadmin.baseUrl').'/'.strtoupper($command), $params);
+                ->post($this->server.'/'.strtoupper($command), $params);
         } catch (ConnectionException $e) {
             throw ConnectionFailed::create($e->getMessage());
         }
@@ -40,6 +52,13 @@ class DirectAdmin
             response: $response,
             command: $command,
         );
+    }
+
+    public function become(string $username): static
+    {
+        $this->username = $this->username.'|'.$username;
+
+        return $this;
     }
 
     /**

@@ -26,29 +26,40 @@ directory is as follows:
 
 ```php
 return [
+    'server' => env('DIRECTADMIN_SERVER', 'https://server:2222'),
     'username' => env('DIRECTADMIN_USERNAME', 'admin'),
     'password' => env('DIRECTADMIN_PASSWORD', 'password'),
-    'baseUrl' => env('DIRECTADMIN_BASE_URL', 'https://server:2222'),
 ];
 ```
 
 ## Usage
 
 Configure the DirectAdmin service by specifying the following environment 
-variables:
+variables. These variables are used to authenticate with DirectAdmin
 
+- `DIRECTADMIN_SERVER`
 - `DIRECTADMIN_USERNAME`
 - `DIRECTADMIN_PASSWORD`
-- `DIRECTADMIN_BASE_URL`
 
-Then you can call any DirectAdmin API command by using the `DirectAdmin` facade:
+The username can be either an admin, reseller or user.
+
+You can call any DirectAdmin API by using the `DirectAdmin` facade:
 
 ```php
 $result = DirectAdmin::call('{DIRECTADMIN_API_CALL}');
 ```
 
-This will return a `Collection` of the response data. You can also call any
-DirectAdmin API command by passing it as method to the `DirectAdmin` facade:
+This will return a `Collection` of the response data. 
+
+If you want to become a different user, and you are authenticated as an admin
+user, you can use the `become` method:
+
+```php
+$result = DirectAdmin::become('user')->call('{DIRECTADMIN_API_CALL}');
+```
+
+You can also call any DirectAdmin API command by passing it as method to 
+the `DirectAdmin` facade like so:
 
 ```php
 $result = DirectAdmin::CMD_API_DOMAIN_OWNERS();
