@@ -40,8 +40,16 @@ The first parameter is the API command you want to call. The second parameter
 is an array of parameters that will be passed to the API as well. This is
 optional and by default an empty array is used.
 
-You can use the `post` or `get` method to call the API. Some API calls are only
-available via `post` and some via `get`.
+You can use the `post` or `get` method to call the API.
+
+### JSON API
+
+We also support the new JSON API. For example, to get the admin usage, you can
+use the following command:
+
+```php
+$result = DirectAdmin::get('api/admin-usage', []);
+```
 
 ### Impersonation
 
