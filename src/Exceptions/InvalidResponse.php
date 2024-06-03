@@ -6,8 +6,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class InvalidResponse extends HttpException
 {
-    public static function create(string $message): static
+    public static function create(string $message): self
     {
-        return new static(500, $message);
+        return new self(500, $message);
     }
 }

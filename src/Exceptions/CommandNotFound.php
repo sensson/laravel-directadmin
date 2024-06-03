@@ -6,8 +6,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CommandNotFound extends HttpException
 {
-    public static function create(string $command): static
+    public static function create(string $command): self
     {
-        return new static(405, 'Command `'.$command.'` does not exist.');
+        return new self(405, 'Command `'.$command.'` does not exist.');
     }
 }

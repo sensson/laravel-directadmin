@@ -6,8 +6,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Unauthorized extends HttpException
 {
-    public static function create(): static
+    public static function create(): self
     {
-        return new static(403, 'You do not have access to this resource.');
+        return new self(403, 'You do not have access to this resource.');
     }
 }
