@@ -2,12 +2,12 @@
 
 namespace Sensson\DirectAdmin\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
-class ConnectionFailed extends HttpException
+class ConnectionFailed extends Exception
 {
     public static function create(string $message): self
     {
-        return new self(500, $message);
+        return new self($message);
     }
 }

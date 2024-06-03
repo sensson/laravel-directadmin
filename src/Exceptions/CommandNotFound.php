@@ -2,12 +2,12 @@
 
 namespace Sensson\DirectAdmin\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
-class CommandNotFound extends HttpException
+class CommandNotFound extends Exception
 {
     public static function create(string $command): self
     {
-        return new self(405, 'Command `'.$command.'` does not exist.');
+        return new self('Command `'.$command.'` does not exist.');
     }
 }

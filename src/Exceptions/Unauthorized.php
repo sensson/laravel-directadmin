@@ -2,12 +2,12 @@
 
 namespace Sensson\DirectAdmin\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
-class Unauthorized extends HttpException
+class Unauthorized extends Exception
 {
     public static function create(): self
     {
-        return new self(403, 'You do not have access to this resource.');
+        return new self('You do not have access to this resource.');
     }
 }

@@ -2,12 +2,12 @@
 
 namespace Sensson\DirectAdmin\Exceptions;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
-class AuthenticationFailed extends HttpException
+class AuthenticationFailed extends Exception
 {
     public static function create(): self
     {
-        return new self(401, 'Unauthorized. Please check the credentials.');
+        return new self('Unauthorized. Please check the credentials.');
     }
 }
