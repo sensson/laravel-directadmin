@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpUnhandledExceptionInspection */
+
 namespace Sensson\DirectAdmin;
 
 use Illuminate\Http\Client\ConnectionException;
@@ -52,12 +54,16 @@ class DirectAdmin
      */
     public function call(string $command, array $params = [], Method $method = Method::POST): Collection
     {
+        if (str_starts_with(strtolower($command), 'cmd_api_')) {
+            $command = strtoupper($command);
+        }
+
         try {
             $response = Http::acceptJson()
                 ->withBasicAuth($this->username, $this->password)
                 ->withOptions($this->getHttpOptions())
                 ->withQueryParameters($this->getQueryParams())
-                ->{$method->verb()}($this->server.'/'.strtoupper($command), $params);
+                ->{$method->verb()}($this->server.'/'.$command, $params);
         } catch (ConnectionException $e) {
             throw ConnectionFailed::create($e->getMessage());
         }
