@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/sensson/laravel-directadmin/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/sensson/laravel-directadmin/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/sensson/laravel-directadmin.svg?style=flat-square)](https://packagist.org/packages/sensson/laravel-directadmin)
 
-A simple DirectAdmin API for Laravel.
+PHP library for interacting with the DirectAdmin API in Laravel.
 
 ## Installation
 
@@ -13,60 +13,59 @@ You can install the package via composer:
 
 ```bash
 composer require sensson/laravel-directadmin
-```
-
-You can publish the config file with:
-
-```bash
 php artisan vendor:publish --tag="laravel-directadmin-config"
-```
-
-The configuration file that will be published to your application's config 
-directory is as follows:
-
-```php
-return [
-    'server' => env('DIRECTADMIN_SERVER', 'https://server:2222'),
-    'username' => env('DIRECTADMIN_USERNAME', 'admin'),
-    'password' => env('DIRECTADMIN_PASSWORD', 'password'),
-];
 ```
 
 ## Usage
 
-Configure the DirectAdmin service by specifying the following environment 
-variables. These variables are used to authenticate with DirectAdmin
+You will need the following credentials to authenticate:
 
 - `DIRECTADMIN_SERVER`
 - `DIRECTADMIN_USERNAME`
 - `DIRECTADMIN_PASSWORD`
 
-The username can be either an admin, reseller or user.
-
-### Calling the API
+### A simple example
 
 You can call any DirectAdmin API by using the `DirectAdmin` facade:
 
 ```php
-$result = DirectAdmin::post('{DIRECTADMIN_API_CALL}');
+<?php
+use Sensson\DirectAdmin\Facades\DirectAdmin;
+
+$result = DirectAdmin::post('{DIRECTADMIN_API_CALL}', []);
+$result = DirectAdmin::get('{DIRECTADMIN_API_CALL}', []);
 ```
 
-Alternatively you can use the `get` method to call the API. It depends on
-the API call whether you should use `post` or `get`. Please refer to the 
-[DirectAdmin API documentation](https://docs.directadmin.com/directadmin/customizing-workflow/api-all-about.html) for more information.
+The first parameter is the API command you want to call. The second parameter
+is an array of parameters that will be passed to the API as well. This is
+optional and by default an empty array is used.
 
-```php
-$result = DirectAdmin::get('{DIRECTADMIN_API_CALL}');
-```
+You can use the `post` or `get` method to call the API. Some API calls are only
+available via `post` and some via `get`.
 
-### Impersonating a user
+### Impersonation
 
-If you want to become a different user, and you are authenticated as an admin
-user, you can use the `become` method:
+If you want to run an API call as a different user, and you are authenticated as 
+an admin or reseller, you can use the `become` method:
 
 ```php
 $result = DirectAdmin::become('user')->post('{DIRECTADMIN_API_CALL}');
 ```
+
+This will run the `DIRECTADMIN_API_CALL` as the user `user`.
+
+### Debugging
+
+You can enable debugging by calling the `debug` method:
+
+```php
+$result = DirectAdmin::debug()->post('{DIRECTADMIN_API_CALL}', []);
+```
+
+This will enable debugging for the HTTP request. This can help you identify
+issues with the DirectAdmin server.
+
+### More information
 
 For more information on the available commands, please refer to the 
 [DirectAdmin API documentation](https://docs.directadmin.com/directadmin/customizing-workflow/api-all-about.html).
