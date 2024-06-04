@@ -9,6 +9,8 @@ use Sensson\DirectAdmin\DirectAdmin as BaseDirectAdmin;
  * @see BaseDirectAdmin
  *
  * @method static call(string $string, array $params = [])
+ * @method static get(string $string, array $params = [])
+ * @method static post(string $string, array $params = [])
  * @method static debug()
  */
 class DirectAdmin extends Facade
