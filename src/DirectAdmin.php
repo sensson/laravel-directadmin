@@ -60,10 +60,11 @@ class DirectAdmin
 
         try {
             $response = Http::acceptJson()
+                ->baseUrl($this->server)
                 ->withBasicAuth($this->username, $this->password)
                 ->withOptions($this->getHttpOptions())
                 ->withQueryParameters($this->getQueryParams())
-                ->{$method->verb()}($this->server.'/'.$command, $params);
+                ->{$method->verb()}($command, $params);
         } catch (ConnectionException $e) {
             throw ConnectionFailed::create($e->getMessage());
         }
