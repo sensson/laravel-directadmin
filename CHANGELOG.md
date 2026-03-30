@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-directadmin` will be documented in this file.
 
+## v0.1.0 - 2026-03-30
+
+### What's Changed
+
+* chore(deps): bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/sensson/laravel-directadmin/pull/6
+* chore(deps): bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/sensson/laravel-directadmin/pull/8
+* chore(deps): bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/sensson/laravel-directadmin/pull/7
+* chore(deps): bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/sensson/laravel-directadmin/pull/10
+* chore(deps): bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/sensson/laravel-directadmin/pull/12
+* feat: add laravel 13, drop laravel 10 support by @ju5t in https://github.com/sensson/laravel-directadmin/pull/14
+
+**Full Changelog**: https://github.com/sensson/laravel-directadmin/compare/v0.0.4...v0.1.0
+
 ## v0.0.4 - 2025-02-25
 
 ### What's Changed
